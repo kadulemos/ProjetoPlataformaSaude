@@ -11,5 +11,6 @@ public interface LaudoDAO {
 	public void editar(Laudo l);
 	public void deletar(long idLaudo);
 	public Laudo listarPeloId(long idLaudo);
+	public void limparLista();
 
 }

@@ -11,5 +11,6 @@ public interface AtendimentoService {
 	public void editar(Atendimento at);
 	public void deletar(long idAtendimento);
 	public Atendimento listarPeloId(long idAtendimento);
+	public void limparLista();
 	
 }

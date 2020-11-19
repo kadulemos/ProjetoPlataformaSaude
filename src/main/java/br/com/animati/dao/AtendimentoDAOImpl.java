@@ -68,4 +68,10 @@ public class AtendimentoDAOImpl implements AtendimentoDAO {
 		return atendimentoEncontrado;
 	}
 
+	@Override
+	public void limparLista() {
+		listaAtendimentos.clear();
+		
+	}
+
 }

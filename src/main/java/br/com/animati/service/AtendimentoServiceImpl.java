@@ -42,4 +42,10 @@ public class AtendimentoServiceImpl implements AtendimentoService {
 		return dao.listarPeloId(idAtendimento);
 	}
 
+	@Override
+	public void limparLista() {
+		dao.limparLista();
+		
+	}
+
 }

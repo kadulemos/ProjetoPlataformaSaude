@@ -38,4 +38,10 @@ public class LaudoServiceImpl implements LaudoSevice {
 		return dao.listarPeloId(idLaudo);
 	}
 
+	@Override
+	public void limparLista() {
+		dao.limparLista();
+		
+	}
+
 }

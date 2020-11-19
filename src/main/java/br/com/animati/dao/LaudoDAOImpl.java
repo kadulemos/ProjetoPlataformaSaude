@@ -70,4 +70,10 @@ public class LaudoDAOImpl implements LaudoDAO {
 		return laudoEncontrado;
 	}
 
+	@Override
+	public void limparLista() {
+		listaLaudos.clear();
+		
+	}
+
 }
