@@ -17,6 +17,6 @@ public class Paciente {
 	private String cpf;
 	private String password;
 	private String rg;
-	private String sexo;
+	private SexType sexo;
 
 }
