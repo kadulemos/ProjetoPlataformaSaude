@@ -11,5 +11,6 @@ public interface LaudoSevice {
 	public void editar(Laudo l);
 	public void deletar(long idLaudo);
 	public Laudo listarPeloId(long idLaudo);
+	public Laudo listarPeloIdMedico(long idMedico);
 	public void limparLista();
 }

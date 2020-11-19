@@ -15,4 +15,5 @@ public class Atendimento {
 	private String nomeProcedimento;
 	private String modalidade;
 	private Medico medico;
+	private Paciente paciente;
 }

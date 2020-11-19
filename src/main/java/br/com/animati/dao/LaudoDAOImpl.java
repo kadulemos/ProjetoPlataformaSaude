@@ -71,6 +71,12 @@ public class LaudoDAOImpl implements LaudoDAO {
 	}
 
 	@Override
+	public Laudo listarPeloIdMedico(long idMedico) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	public void limparLista() {
 		listaLaudos.clear();
 		

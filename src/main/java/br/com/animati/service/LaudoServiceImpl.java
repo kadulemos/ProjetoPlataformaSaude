@@ -37,6 +37,12 @@ public class LaudoServiceImpl implements LaudoSevice {
 	public Laudo listarPeloId(long idLaudo) {
 		return dao.listarPeloId(idLaudo);
 	}
+	
+
+	@Override
+	public Laudo listarPeloIdMedico(long idMedico) {
+		return dao.listarPeloIdMedico(idMedico);
+	}
 
 	@Override
 	public void limparLista() {
