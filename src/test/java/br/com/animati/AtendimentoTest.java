@@ -1,9 +1,11 @@
 package br.com.animati;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -113,6 +115,71 @@ public class AtendimentoTest {
 		
 		assertEquals(2, list.size());
 		
+	}
+	
+	@Test
+	public void editarAtendimentoTest() {
+		
+		Paciente paciente = pacienteService.listarPeloId(12345);
+		Medico medico = medicoService.listarPeloId(64321);
+
+		Atendimento atendimento = new Atendimento();
+		atendimento.setIdAtendimento(234);
+		atendimento.setDataHora("20/11/2020");
+		atendimento.setNomeProcedimento("RX Coluna");
+		atendimento.setModalidade("Algo");
+		atendimento.setMedico(medico);
+		atendimento.setPaciente(paciente);
+		
+		atendimentoService.cadastrar(atendimento);
+		
+		Atendimento atendimentoEditar = atendimentoService.listarPeloId(234);
+		atendimentoEditar.setNomeProcedimento("RX Lombar");
+		atendimentoService.editar(atendimentoEditar);
+		
+		Atendimento atendimentoEditado = atendimentoService.listarPeloId(234);
+		
+		assertEquals("RX Coluna", atendimentoEditado.getNomeProcedimento());
+	}
+	
+	@Test
+	public void deletarAtendimentoTest() {
+		
+		Paciente paciente = pacienteService.listarPeloId(12345);
+		Medico medico = medicoService.listarPeloId(64321);
+		
+		Atendimento atendimento = new Atendimento();
+		atendimento.setIdAtendimento(432);
+		atendimento.setDataHora("18/11/2020");
+		atendimento.setNomeProcedimento("RX Torax");
+		atendimento.setModalidade("Algo");
+		atendimento.setMedico(medico);
+		atendimento.setPaciente(paciente);
+		
+		atendimentoService.cadastrar(atendimento);
+		
+		atendimentoService.deletar(432);
+		
+		Assert.assertTrue(atendimentoService.list().isEmpty());
+	}
+	
+	@Test
+	public void listarPeloIdAtendimentoTest() {
+		
+		Paciente paciente = pacienteService.listarPeloId(12345);
+		Medico medico = medicoService.listarPeloId(64321);
+		
+		Atendimento atendimento = new Atendimento();
+		atendimento.setIdAtendimento(432);
+		atendimento.setDataHora("18/11/2020");
+		atendimento.setNomeProcedimento("RX Torax");
+		atendimento.setModalidade("Algo");
+		atendimento.setMedico(medico);
+		atendimento.setPaciente(paciente);
+		
+		atendimentoService.cadastrar(atendimento);
+		
+		assertNotNull(atendimentoService.listarPeloId(432));
 	}
 
 }
