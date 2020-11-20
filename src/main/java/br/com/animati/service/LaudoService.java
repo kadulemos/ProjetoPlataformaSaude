@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.animati.entity.Laudo;
 
-public interface LaudoSevice {
+public interface LaudoService {
 
 	public void cadastrar(Laudo l);
 	public List<Laudo> list();

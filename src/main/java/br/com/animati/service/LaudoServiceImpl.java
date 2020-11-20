@@ -6,7 +6,7 @@ import br.com.animati.dao.LaudoDAO;
 import br.com.animati.dao.LaudoDAOImpl;
 import br.com.animati.entity.Laudo;
 
-public class LaudoServiceImpl implements LaudoSevice {
+public class LaudoServiceImpl implements LaudoService {
 	
 	private LaudoDAO dao;
 
