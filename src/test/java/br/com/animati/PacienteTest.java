@@ -25,7 +25,7 @@ public class PacienteTest {
 	}
 
 	@Test
-	public void cadastrarTest() {
+	public void cadastrarPacienteTest() {
 
 		pacienteService.limparLista();
 
@@ -48,7 +48,7 @@ public class PacienteTest {
 	}
 
 	@Test
-	public void listarTest() {
+	public void listarPacienteTest() {
 
 		pacienteService.limparLista();
 
@@ -86,7 +86,7 @@ public class PacienteTest {
 	}
 
 	@Test
-	public void editarTest() {
+	public void editarPacienteTest() {
 
 		pacienteService.limparLista();
 
@@ -128,7 +128,7 @@ public class PacienteTest {
 	}
 	
 	@Test
-	public void deletarTest() {
+	public void deletarPacienteTest() {
 		
 		pacienteService.limparLista();
 		
@@ -152,7 +152,7 @@ public class PacienteTest {
 	}
 	
 	@Test
-	public void listarPeloIdTest() {
+	public void listarPeloIdPacienteTest() {
 		
 		pacienteService.limparLista();
 		

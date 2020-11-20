@@ -24,7 +24,7 @@ public class MedicoTest {
 	}
 	
 	@Test
-	public void cadastrarTest() throws Exception {
+	public void cadastrarMedicoTest() throws Exception {
 		
 		medicoService.limparLista();
 		
@@ -41,7 +41,7 @@ public class MedicoTest {
 	}
 	
 	@Test
-	public void listarTest() throws Exception {
+	public void listarMedicoTest() throws Exception {
 		
 		medicoService.limparLista();
 		
@@ -66,7 +66,7 @@ public class MedicoTest {
 	}
 
 	@Test
-	public void editarTest() throws Exception {
+	public void editarMedicoTest() throws Exception {
 		
 		medicoService.limparLista();
 		
@@ -90,7 +90,7 @@ public class MedicoTest {
 	}
 	
 	@Test
-	public void deletarTest() throws Exception {
+	public void deletarMedicoTest() throws Exception {
 		
 		medicoService.limparLista();
 		
@@ -110,7 +110,7 @@ public class MedicoTest {
 	}
 	
 	@Test
-	public void listarPeloIdTest() throws Exception {
+	public void listarPeloIdMedicoTest() throws Exception {
 		
 		medicoService.limparLista();
 		
