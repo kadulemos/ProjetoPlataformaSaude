@@ -2,6 +2,9 @@ package br.com.animati;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -80,6 +83,74 @@ public class LaudoTest {
 		Laudo laudoPeloId = laudoService.listarPeloId(98765);
 		
 		assertEquals("234", laudoPeloId.getAtendimento().getIdAtendimento());
+		
+	}
+	
+	@Test
+	public void listarLaudoTest() {
+		Atendimento atendimento = atendimentoService.listarPeloId(234);
+		Medico medico = medicoService.listarPeloId(64321);
+		
+		Laudo laudo1 = new Laudo();
+		laudo1.setIdLaudo(98765);
+		laudo1.setTexto("Lorem ipsum...");
+		laudo1.setMedico(medico);
+		laudo1.setAtendimento(atendimento);
+		
+		laudoService.cadastrar(laudo1);
+		
+		Laudo laudo2 = new Laudo();
+		laudo2.setIdLaudo(56789);
+		laudo2.setTexto("Lorem ipsum...");
+		laudo2.setMedico(medico);
+		laudo2.setAtendimento(atendimento);
+		
+		laudoService.cadastrar(laudo2);
+		
+		List<Laudo> list = laudoService.list();
+		
+		assertEquals(2, list.size());
+		
+	}
+	
+	@Test
+	public void editarLaudoTest() {
+		Atendimento atendimento = atendimentoService.listarPeloId(234);
+		Medico medico = medicoService.listarPeloId(64321);
+		
+		Laudo laudo = new Laudo();
+		laudo.setIdLaudo(56789);
+		laudo.setTexto("Lorem ipsum...");
+		laudo.setMedico(medico);
+		laudo.setAtendimento(atendimento);
+		
+		laudoService.cadastrar(laudo);
+		
+		Laudo laudoEditar = laudoService.listarPeloId(56789);
+		laudoEditar.setTexto("Mudança...");
+		laudoService.editar(laudoEditar);
+		
+		Laudo laudoEditado = laudoService.listarPeloId(56789);
+		
+		assertEquals("Mudança..." laudoEditado.getTexto());
+	}
+	
+	@Test
+	public void deletarLaudoTest() {
+		Atendimento atendimento = atendimentoService.listarPeloId(234);
+		Medico medico = medicoService.listarPeloId(64321);
+		
+		Laudo laudo = new Laudo();
+		laudo.setIdLaudo(98765);
+		laudo.setTexto("Lorem ipsum...");
+		laudo.setMedico(medico);
+		laudo.setAtendimento(atendimento);
+		
+		laudoService.cadastrar(laudo);
+		
+		laudoService.deletar(98765);
+		
+		Assert.assertTrue(laudoService.list().isEmpty());
 		
 	}
 
