@@ -1,6 +1,7 @@
 package br.com.animati;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
@@ -20,15 +21,15 @@ import br.com.animati.service.MedicoService;
 import br.com.animati.service.PacienteService;
 
 public class LaudoTest {
-	
+
 	private LaudoService laudoService;
 	private AtendimentoService atendimentoService;
 	private MedicoService medicoService;
 	private PacienteService pacienteService;
-	
+
 	@Before
 	public void init() throws Exception {
-		
+
 		Paciente paciente = new Paciente();
 		paciente.setIdPaciente(12345);
 		paciente.setEmpresa("LG");
@@ -40,9 +41,9 @@ public class LaudoTest {
 		paciente.setPassword("1111");
 		paciente.setRg("1.234.567-8");
 		paciente.setSexo(SexType.M);
-		
+
 		pacienteService.cadastrar(paciente);
-		
+
 		Medico medico = new Medico();
 		medico.setIdMedico(64321);
 		medico.setCrm("12345678-9");
@@ -50,10 +51,10 @@ public class LaudoTest {
 		medico.setUf(UfType.SP);
 
 		medicoService.cadastrar(medico);
-		
+
 		Paciente pacienteCadastrado = pacienteService.listarPeloId(12345);
 		Medico medicoCadastrado = medicoService.listarPeloId(64321);
-		
+
 
 		Atendimento atendimento = new Atendimento();
 		atendimento.setIdAtendimento(234);
@@ -62,96 +63,130 @@ public class LaudoTest {
 		atendimento.setModalidade("Algo");
 		atendimento.setMedico(medicoCadastrado);
 		atendimento.setPaciente(pacienteCadastrado);
-		
+
 		atendimentoService.cadastrar(atendimento);
 	}
-	
+
 	@Test
 	public void cadastroLaudoTest() {
-		
+
 		Atendimento atendimento = atendimentoService.listarPeloId(234);
 		Medico medico = medicoService.listarPeloId(64321);
-		
+
 		Laudo laudo = new Laudo();
 		laudo.setIdLaudo(98765);
 		laudo.setTexto("Lorem ipsum...");
 		laudo.setMedico(medico);
 		laudo.setAtendimento(atendimento);
-		
+
 		laudoService.cadastrar(laudo);
-		
+
 		Laudo laudoPeloId = laudoService.listarPeloId(98765);
-		
+
 		assertEquals("234", laudoPeloId.getAtendimento().getIdAtendimento());
-		
+
 	}
-	
+
 	@Test
 	public void listarLaudoTest() {
 		Atendimento atendimento = atendimentoService.listarPeloId(234);
 		Medico medico = medicoService.listarPeloId(64321);
-		
+
 		Laudo laudo1 = new Laudo();
 		laudo1.setIdLaudo(98765);
 		laudo1.setTexto("Lorem ipsum...");
 		laudo1.setMedico(medico);
 		laudo1.setAtendimento(atendimento);
-		
+
 		laudoService.cadastrar(laudo1);
-		
+
 		Laudo laudo2 = new Laudo();
 		laudo2.setIdLaudo(56789);
 		laudo2.setTexto("Lorem ipsum...");
 		laudo2.setMedico(medico);
 		laudo2.setAtendimento(atendimento);
-		
+
 		laudoService.cadastrar(laudo2);
-		
+
 		List<Laudo> list = laudoService.list();
-		
+
 		assertEquals(2, list.size());
-		
+
 	}
-	
+
 	@Test
 	public void editarLaudoTest() {
 		Atendimento atendimento = atendimentoService.listarPeloId(234);
 		Medico medico = medicoService.listarPeloId(64321);
-		
+
 		Laudo laudo = new Laudo();
 		laudo.setIdLaudo(56789);
 		laudo.setTexto("Lorem ipsum...");
 		laudo.setMedico(medico);
 		laudo.setAtendimento(atendimento);
-		
+
 		laudoService.cadastrar(laudo);
-		
+
 		Laudo laudoEditar = laudoService.listarPeloId(56789);
 		laudoEditar.setTexto("Mudança...");
 		laudoService.editar(laudoEditar);
-		
+
 		Laudo laudoEditado = laudoService.listarPeloId(56789);
-		
-		assertEquals("Mudança..." laudoEditado.getTexto());
+
+		assertEquals("Mudança...", laudoEditado.getTexto());
 	}
-	
+
 	@Test
 	public void deletarLaudoTest() {
 		Atendimento atendimento = atendimentoService.listarPeloId(234);
 		Medico medico = medicoService.listarPeloId(64321);
-		
+
 		Laudo laudo = new Laudo();
 		laudo.setIdLaudo(98765);
 		laudo.setTexto("Lorem ipsum...");
 		laudo.setMedico(medico);
 		laudo.setAtendimento(atendimento);
-		
+
+		laudoService.cadastrar(laudo);
+
+		laudoService.deletar(98765);
+
+		Assert.assertTrue(laudoService.list().isEmpty());
+
+	}
+
+	@Test
+	public void listarPeloIdLaudoTest() {
+		Atendimento atendimento = atendimentoService.listarPeloId(234);
+		Medico medico = medicoService.listarPeloId(64321);
+
+		Laudo laudo = new Laudo();
+		laudo.setIdLaudo(98765);
+		laudo.setTexto("Lorem ipsum...");
+		laudo.setMedico(medico);
+		laudo.setAtendimento(atendimento);
+
+		laudoService.cadastrar(laudo);
+
+		assertNotNull(laudoService.listarPeloId(98765));
+
+	}
+
+	@Test
+	public void listarPeloIdMedicoTest() {
+		Atendimento atendimento = atendimentoService.listarPeloId(234);
+		Medico medico = medicoService.listarPeloId(64321);
+
+		Laudo laudo = new Laudo();
+		laudo.setIdLaudo(98765);
+		laudo.setTexto("Lorem ipsum...");
+		laudo.setMedico(medico);
+		laudo.setAtendimento(atendimento);
+
 		laudoService.cadastrar(laudo);
 		
-		laudoService.deletar(98765);
-		
-		Assert.assertTrue(laudoService.list().isEmpty());
-		
+		assertNotNull(laudoService.listarPeloIdMedico(64321));
 	}
+	
 
 }
