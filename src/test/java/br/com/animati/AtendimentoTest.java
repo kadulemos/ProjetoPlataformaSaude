@@ -15,8 +15,11 @@ import br.com.animati.entity.Paciente;
 import br.com.animati.entity.SexType;
 import br.com.animati.entity.UfType;
 import br.com.animati.service.AtendimentoService;
+import br.com.animati.service.AtendimentoServiceImpl;
 import br.com.animati.service.MedicoService;
+import br.com.animati.service.MedicoServiceImpl;
 import br.com.animati.service.PacienteService;
+import br.com.animati.service.PacienteServiceImpl;
 
 public class AtendimentoTest {
 
@@ -26,6 +29,9 @@ public class AtendimentoTest {
 
 	@Before
 	public void init() throws Exception {
+		
+		pacienteService = new PacienteServiceImpl();
+		
 		Paciente paciente1 = new Paciente();
 		paciente1.setIdPaciente(12345);
 		paciente1.setEmpresa("LG");
@@ -53,6 +59,8 @@ public class AtendimentoTest {
 		paciente2.setSexo(SexType.F);
 
 		pacienteService.cadastrar(paciente2);
+		
+		medicoService = new MedicoServiceImpl();
 
 		Medico medico = new Medico();
 		medico.setIdMedico(64321);
@@ -61,6 +69,8 @@ public class AtendimentoTest {
 		medico.setUf(UfType.SP);
 
 		medicoService.cadastrar(medico);
+		
+		atendimentoService = new AtendimentoServiceImpl();
 	}
 
 	@Test
@@ -139,7 +149,7 @@ public class AtendimentoTest {
 		
 		Atendimento atendimentoEditado = atendimentoService.listarPeloId(234);
 		
-		assertEquals("RX Coluna", atendimentoEditado.getNomeProcedimento());
+		assertEquals("RX Lombar", atendimentoEditado.getNomeProcedimento());
 	}
 	
 	@Test
