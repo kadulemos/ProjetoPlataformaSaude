@@ -9,10 +9,14 @@ import br.com.animati.entity.Laudo;
 public class LaudoServiceImpl implements LaudoService {
 	
 	private LaudoDAO dao;
+	
+	public LaudoServiceImpl() {
+		dao = new LaudoDAOImpl();
+	}
 
 	@Override
 	public void cadastrar(Laudo l) {
-		dao = new LaudoDAOImpl();
+		dao.cadastrar(l);
 
 	}
 

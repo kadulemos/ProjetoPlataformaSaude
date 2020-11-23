@@ -94,7 +94,7 @@ public class LaudoTest {
 
 		Laudo laudoPeloId = laudoService.listarPeloId(98765);
 
-		assertEquals("234", laudoPeloId.getAtendimento().getIdAtendimento());
+		assertEquals(234, laudoPeloId.getAtendimento().getIdAtendimento());
 
 	}
 
